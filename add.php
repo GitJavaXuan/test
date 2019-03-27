@@ -25,5 +25,3 @@ if (!$status){
 }
 echo "插入成功";
 mysqli_close($con);//关闭数据库连接
-absdjkhb
-xian
