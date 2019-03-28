@@ -99,6 +99,21 @@
                                     die("新增失败:".mysqli_error($con));
                                 }
                                 echo "<script>alert('新增成功');location.href='index.php?do=index'</script>";
+                            }else if (!strcmp($type,'login')){
+                                echo "<form method='post' action=index.php>";
+                                echo "<input type=text required=required placeholder=账号 name='account' id='account'/>";
+                                echo "<input type='hidden' name='do' value='register'/>";
+                                echo "<input type=password required=required placeholder=密码 name='password' id='password'/>";
+                                echo "<button class=but type=submit>登录</button>";
+                                echo "</form>";
+                            }else if (!strcmp($type,'register')){
+                                $con = mysqli_connect($host,$user,$password,$database);
+                                $sql = "SELECT * FROM `userlist` WHERE `ACCOUNT` = (".$_POST['account'].")  AND `PASSWORD` = (".$_POST['password'].")";
+                                $result = mysqli_query($con,$sql);
+                                if (!$result){
+                                    echo "<script>alert('登录失败');location.href='index.php?do=login'</script>";
+                                }
+                                echo "<script>alert('登录成功');location.href='index.php?do=index'</script>";
                             }else{
                                 echo "参数无效".$type;
                             }
